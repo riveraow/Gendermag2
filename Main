@@ -1,0 +1,153 @@
+import java.io.*;
+import java.util.*;
+
+public class movie {
+	
+	static File file = new File("movielist.txt");
+
+    static Integer movieID;
+    static Integer numberOfViewers;
+    static Integer releaseYear;
+    static Double rating;
+    static String movieName;
+
+    public static void main(String[] args) throws FileNotFoundException {
+
+    	
+    	movie [] ArrayMovie = new movie [100];
+    	readData(ArrayMovie);
+    	search(ArrayMovie, 5); // searching for specific rating
+    	compareMovies(ArrayMovie);
+    	
+    	List<movie> MOVIELIST = new ArrayList<movie>();
+    	readData(ArrayMovie);
+    	search(ArrayMovie,2000); // searching for movie and specific rating
+    	compareMovies(ArrayMovie);
+    	
+    	
+    	
+    	//PART 2 ////////////////////////////////////////////////////////////////////
+    	//heap
+    	File filename = new File("movies/txt");
+    	Scanner inputheap = new Scanner (filename);
+    	MyHeap movielist = new MyHeap();
+    	for (int i = 0;i<20;i++) {
+    		String movieName = inputheap.nextLine();
+    		movielist.addMovie(movieName);
+    	}
+    }
+
+    @Override
+    public String toString() {
+        return "Movie Information:\nMovie: " + movieName + "\nRating: " + rating + "\nRelease Year: " + releaseYear
+                + "\nNumber of Viewing: " + numberOfViewers + "\nMovie ID:  " + movieID;
+    }
+
+    public Integer getMovieID() {
+        return movieID;
+    }
+
+    public void setMovieID(Integer movieID) {
+        this.movieID = movieID;
+    }
+
+    public Integer getNumberOfViewers() {
+        return numberOfViewers;
+    }
+
+    public void setNumberOfViewers(Integer numberOfViewers) {
+        this.numberOfViewers = numberOfViewers;
+    }
+
+    public Integer getReleaseYear() {
+        return releaseYear;
+    }
+
+    public void setReleaseYear(Integer releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+    public String movieName() {
+        return movieName;
+    }
+
+    public void settMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    movie() {
+    }
+
+    public movie(int movieID, int numberOfViewers, int releaseYear, double rating, String movieName) {
+        this.movieID = movieID;
+        this.numberOfViewers = numberOfViewers;
+        this.releaseYear = releaseYear;
+        this.rating = rating;
+        this.movieName = movieName;
+    }
+    //be ready to maybe delete this
+    public movie(int movieID2, int numberOfViewers2, double rating2, int releaseYear2, String movieName2) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void readData(movie[] movies) throws FileNotFoundException {
+        Scanner input = new Scanner(file);
+
+        int i = 0;
+        while (input.hasNext()) {
+            int movieID = input.nextInt();
+            int numberOfViewers = input.nextInt();
+            double rating = input.nextDouble();
+            int releaseYear = input.nextInt();
+            String movieName = input.nextLine();
+            movies[i] = new movie(movieID, numberOfViewers, rating, releaseYear,movieName);
+            i++;
+        }
+        input.close();
+    }
+    
+    public static void readData (List<movie>movies) throws FileNotFoundException{
+    	Scanner inputuser = new Scanner(file);
+    	while (inputuser.hasNext()) {
+    		int movieID = inputuser.nextInt();
+    		int numberOfViewers = inputuser.nextInt();
+    		double rating = inputuser.nextDouble();
+    		int releaseYear = inputuser.nextInt();
+    		String movieName = inputuser.nextLine();
+    		
+    		movies.add(new movie (movieID,numberOfViewers,rating,releaseYear,movieName));
+    		
+    		
+    	}
+    	inputuser.close();
+    }
+    
+    
+    
+    public static void search(movie[] movies, double rating) {
+        for (movie movie : movies) {
+            if (movie.getRating() == rating) {
+                System.out.println(movie);
+            }
+        }
+    }
+    public static void compareMovies(movie[] movies) {
+        Arrays.sort(movies, Comparator.comparing(movie::getRating));
+        for (movie m : movies) {
+            System.out.println(m);
+        }
+    }
+    public static void compareMovies(List<movie> movies) {
+        movies.sort(Comparator.comparing(movie::getRating).thenComparing(movie::getRating));
+        movies.forEach(System.out::println);
+    }
+    }
+

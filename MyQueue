@@ -1,0 +1,52 @@
+import java.util.ArrayList;
+
+public interface MyQueue <T>{
+	
+//all methods///////////////////////
+	String addMovie(String t);
+	void clearAll();
+	boolean isEmpty();
+	String peekMovie();
+	void pushMovie();
+	void removeMovie(int t);
+	int size();
+	
+	
+	
+	
+}
+class MyHeap <H> implements MyQueue{
+	
+	//creating heap
+	ArrayList movielist = new ArrayList <>();
+	
+	//adding movie and including all methods in my heap implementation
+	public String addMovie(String t) {
+		movielist.add(t);
+		return null;
+	}
+	public void clearAll() {
+		
+		int i = 0;
+		while (i<=movielist.size()) movielist.remove(i);
+	}
+	public boolean isEmpty() {
+		return movielist.size () == 0;
+	}
+	public String peekMovie() {
+		return (String ) movielist.get(0);
+	}
+	public void pushMovie() {
+		
+	}
+	
+	public void removeMovie(int t ) {
+		movielist.remove(t);
+	}
+	
+	public int size () {
+		return movielist.size();
+	}
+	//end of interface
+	
+}

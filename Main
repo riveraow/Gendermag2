@@ -12,20 +12,17 @@ public class movie {
     static String movieName;
 
     public static void main(String[] args) throws FileNotFoundException {
-
-    	
-    	movie [] ArrayMovie = new movie [100];
-    	readData(ArrayMovie);
-    	search(ArrayMovie, 5); // searching for specific rating
-    	compareMovies(ArrayMovie);
-    	
+    		movie [] ArrayMovie = new movie [100];
+    	// array
     	List<movie> MOVIELIST = new ArrayList<movie>();
     	readData(ArrayMovie);
     	search(ArrayMovie,2000); // searching for movie and specific rating
     	compareMovies(ArrayMovie);
-    	
-    	
-    	
+        // calling
+    	readData(ArrayMovie);
+    	search(ArrayMovie, 5); // searching for specific rating
+    	compareMovies(ArrayMovie);
+	
     	//PART 2 ////////////////////////////////////////////////////////////////////
     	//heap
     	File filename = new File("movies/txt");

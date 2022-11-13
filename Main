@@ -41,7 +41,8 @@ public class movie {
     		String movieName = inputheap.nextLine();
     		movielist.addMovie(movieName);
     	}
-    	
+    	HeapSort ob = new HeapSort();
+    	ob.sort(ArrayMovie);
     	
     }//main
 

@@ -1,5 +1,9 @@
 import java.io.*;
 import java.util.*;
+import java.util.Comparator;
+
+
+
 
 public class movie {
 	
@@ -10,19 +14,24 @@ public class movie {
     static Integer releaseYear;
     static Double rating;
     static String movieName;
-
+    
+   
+    
     public static void main(String[] args) throws FileNotFoundException {
-    		movie [] ArrayMovie = new movie [100];
-    	// array
+
+    	
+    	movie [] ArrayMovie = new movie [100];
+    	
     	List<movie> MOVIELIST = new ArrayList<movie>();
+    	int N = ArrayMovie.length;
     	readData(ArrayMovie);
     	search(ArrayMovie,2000); // searching for movie and specific rating
     	compareMovies(ArrayMovie);
-        // calling
+    
     	readData(ArrayMovie);
     	search(ArrayMovie, 5); // searching for specific rating
     	compareMovies(ArrayMovie);
-	
+    	
     	//PART 2 ////////////////////////////////////////////////////////////////////
     	//heap
     	File filename = new File("movies/txt");
@@ -32,9 +41,16 @@ public class movie {
     		String movieName = inputheap.nextLine();
     		movielist.addMovie(movieName);
     	}
-    }
+    	
+    	
+    }//main
 
-    @Override
+   
+    	
+		
+	
+
+	@Override
     public String toString() {
         return "Movie Information:\nMovie: " + movieName + "\nRating: " + rating + "\nRelease Year: " + releaseYear
                 + "\nNumber of Viewing: " + numberOfViewers + "\nMovie ID:  " + movieID;
@@ -105,7 +121,7 @@ public class movie {
             double rating = input.nextDouble();
             int releaseYear = input.nextInt();
             String movieName = input.nextLine();
-            movies[i] = new movie(movieID, numberOfViewers, rating, releaseYear,movieName);
+            movies[i] = new movie( movieID, numberOfViewers, releaseYear, rating,movieName);
             i++;
         }
         input.close();
